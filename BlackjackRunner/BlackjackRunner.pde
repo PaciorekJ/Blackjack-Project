@@ -143,9 +143,12 @@ void mousePressed(){
       play=false;
     }
     else if (mouseX>=width*.30&&mouseX<=width*.30+width*.20&& mouseY>=height-(height*.08)&&mouseY<=height-(height*.08)+height - (height*.08)){//double down button
+      if (cash-bet>=0){
       blackjackGame.addCardPlayer();
+      cash-=bet;
       bet*=2;
       play=false;
+      }
     }
     else if (mouseX>=width*.09&&mouseX<=width*.09+width*.20&& mouseY>=height-(height*.08)&&mouseY<=height-(height*.08)+height - (height*.08)){//split button
       //needs implementation
@@ -281,7 +284,7 @@ void endBlackjack(){
         cash=cash+(bet*2);
       }
       else if ((blackjackGame.over21(blackjackGame.dealersCards)==true && blackjackGame.over21(blackjackGame.playersCards)==true) || (blackjackGame.addCards(blackjackGame.getDealersCards())==blackjackGame.addCards(blackjackGame.getPlayersCards()))){//both over 21 or both have same total
-        text("It's a push", width*.42, height*.50);
+        text("It's a push", width*.44, height*.50);
         cash=cash+bet;
       }
       else if ((blackjackGame.addCards(blackjackGame.getDealersCards())<blackjackGame.addCards(blackjackGame.getPlayersCards())) || blackjackGame.over21(blackjackGame.dealersCards)==true){//dealer over 21 or //player has higher cards
