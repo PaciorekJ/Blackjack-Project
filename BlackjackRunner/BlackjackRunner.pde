@@ -5,9 +5,11 @@ boolean play=true;
 boolean begin=false;
 double cash;
 int bet=0;
+PImage blackjackTable;
 Blackjack blackjackGame;
 
 void setup(){
+  blackjackTable=loadImage("blackjackTable.jpg");
   blackjack=false;
   poker=false;
   mainMenu=true;
@@ -212,6 +214,7 @@ void drawMainMenu(){
 void drawBlackjack(){
   fill(0,0,0);
   rect(0,0,width,height);//background
+  image(blackjackTable, width*.01, height*.01);
   fill(255,215,0);
   rect(width*.70,height*.13,width*.25,height*.25);//dealer score outline
   rect(width*.70,height*.61,width*.25,height*.25);//player score outline
@@ -287,7 +290,7 @@ void endBlackjack(){
         text("It's a push", width*.44, height*.50);
         cash=cash+bet;
       }
-      else if ((blackjackGame.addCards(blackjackGame.getDealersCards())<blackjackGame.addCards(blackjackGame.getPlayersCards())) || blackjackGame.over21(blackjackGame.dealersCards)==true){//dealer over 21 or //player has higher cards
+      else if ((blackjackGame.addCards(blackjackGame.getDealersCards())<blackjackGame.addCards(blackjackGame.getPlayersCards())) && blackjackGame.over21(blackjackGame.playersCards)!=true){//player has higher cards
         text("You win!", width*.46, height*.50);
         cash=cash+(bet*2);
       }
