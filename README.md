@@ -10,7 +10,25 @@ The most difficult part was figuring out the logic for who would win. This was h
 
 Code:
 
-Explanation:
+if (blackjackGame.getPlayersCards().size()==2 && blackjackGame.addCards(blackjackGame.getPlayersCards())==21){// 21 blackjack win
+        text("You win! BLACKJACK!", width*.40, height*.50);
+        cash=cash+(bet*2);
+      }
+      else if ((blackjackGame.over21(blackjackGame.dealersCards)==true && blackjackGame.over21(blackjackGame.playersCards)==true) || (blackjackGame.addCards(blackjackGame.getDealersCards())==blackjackGame.addCards(blackjackGame.getPlayersCards()))){//both over 21 or both have same total
+        text("It's a push", width*.44, height*.50);
+        cash=cash+bet;
+      }
+      else if ((blackjackGame.addCards(blackjackGame.getDealersCards())<blackjackGame.addCards(blackjackGame.getPlayersCards())) && blackjackGame.over21(blackjackGame.playersCards)!=true){//player has higher cards
+        text("You win!", width*.46, height*.50);
+        cash=cash+(bet*2);
+      }
+      else if ((blackjackGame.addCards(blackjackGame.getDealersCards())>blackjackGame.addCards(blackjackGame.getPlayersCards())) || (blackjackGame.over21(blackjackGame.playersCards)==true)){//player over 21 or dealer has high cards
+        text("Dealer wins!", width*.44, height*.50);
+      }
+      
+Explanation: 
+
+This is the portion of my code that determines who wins the match. This code uses a method called over21 that requires a arrayList of type "Card". It will return wether the card set is over 21. Also it uses a method called addCards that sums an arraylist of type "card". Both this methods are used to determine who will win in this program.
 
 ## Built With
 
